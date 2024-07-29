@@ -7,13 +7,17 @@ let score = 0;
 let lives = 3; // Player starts with 3 lives
 let enemies = []; // Track enemy positions
 let points = 0; // Track total points in the maze
-let maxScore = document.querySelectorAll('.point').length;
 
 const main = document.querySelector('main');
 const scoreDisplay = document.querySelector('.score p');
 const livesList = document.querySelector('.lives ul'); // List to display lives
 const startDiv = document.querySelector('.startDiv');
 const startButton = document.querySelector('.start');
+
+const beginningSound = new Audio('as2_pacman_beginning.mp3');
+const deathSound = new Audio('as2_pacman_death.mp3');
+const intermissionSound = new Audio('as2_pacman_intermission.mp');
+const lifeSound = new Audio('as2_Lost-life-sound-effect.mp3');
 
 let mazes = [
     [
@@ -110,20 +114,13 @@ function keyDown(event) {
         movePlayer('right');
     }
 }
+
 function checkPointCollision() {
-    const playerRect = player.getBoundingClientRect();
+    const playerElement = document.getElementById('player');
+    const playerRect = playerElement.getBoundingClientRect();
     const points = document.querySelectorAll('.point');
 
-    if (points.length === 0) {
-        if (confirm('Congratulations! You have collected all points. Your total score was ' + score + '. Do you want to play again?')) {
-            console.log('All points collected. Reloading game.');
-            setTimeout(() => {
-            window.location.reload();
-            }, 1);
-        }
-    }
-
-    for (let point of points) {
+    points.forEach(point => {
         const pointRect = point.getBoundingClientRect();
 
         if (
@@ -133,13 +130,27 @@ function checkPointCollision() {
             playerRect.right > pointRect.left
         ) {
             // Collision detected with point
-            console.log('Point collected');
-            point.classList.remove('point');
-            score += 10;
-            document.querySelector('.score p').textContent = score;
+            point.remove();
+            score += 5;
+            updateScore();
+
+            const pointX = Math.floor(point.offsetLeft / point.offsetWidth);
+            const pointY = Math.floor(point.offsetTop / point.offsetHeight);
+
+            // Remove point from the maze array
+            maze[pointY][pointX] = 0;
+
+            // Check if all points are collected
+            if (--points === 0) {
+                intermissionSound.play();
+                setTimeout(() => {
+                    advanceToNextLevel();
+                }, 1000); // Adding a delay before advancing to the next level
+            }
         }
-    }
+    });
 }
+
 
 function movePlayer(direction) {
     let newX = playerX;
@@ -162,7 +173,7 @@ function movePlayer(direction) {
 
     if (maze[newY] && maze[newY][newX] !== undefined && maze[newY][newX] !== 1 && maze[newY][newX] !== 3) {
         if (maze[newY][newX] === 0) {
-            score++;
+            score += 5;
             points--;
             updateScore();
         }
@@ -174,6 +185,7 @@ function movePlayer(direction) {
 
         renderMaze();
         updateMouthDirection(direction);
+        checkPointCollision();
 
         if (points === 0) {
             advanceToNextLevel();
@@ -181,6 +193,7 @@ function movePlayer(direction) {
     }
 
     if (maze[newY][newX] === 3) {
+        deathSound.play();
         lives--;
         updateLives();
         if (lives <= 0) {
@@ -192,6 +205,7 @@ function movePlayer(direction) {
             playerY = 1;
             maze[playerY][playerX] = 2;
             renderMaze();
+            
         }
     }
 }
@@ -232,6 +246,7 @@ function updateLives() {
         let life = document.createElement('li');
         livesList.appendChild(life);
     }
+    lifeSound.play();
 }
 
 function updateMouthDirection(direction) {
@@ -242,6 +257,7 @@ function updateMouthDirection(direction) {
 }
 
 function advanceToNextLevel() {
+    intermissionSound.play();
     if (currentMazeIndex < mazes.length - 1) {
         currentMazeIndex++;
         maze = mazes[currentMazeIndex];
@@ -255,6 +271,7 @@ function advanceToNextLevel() {
 startButton.addEventListener('click', function() {
     renderMaze();
     startDiv.style.display = 'none';
+    beginningSound.play();
     setInterval(moveEnemies, 1000); // Move enemies every second
     updateLives(); // Initialize lives display
 });

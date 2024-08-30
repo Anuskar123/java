@@ -1,0 +1,95 @@
+
+There are three sections in this TCA. You should answer all questions in Section (A), two
+questions from Section (B), and one question from Section (C).
+SECTION A
+Answer all questions in this section
+1. Solve:
+(a) 7x − 5 − 3x = 2 − 5x
+(b) 3 − x + 4x − 7 = 9x − 8 − 7x [4 Marks]
+2. Write the dual of each Boolean statement:
+(a) (x + 1) ∗ (0 ∗ x′) = 0
+(b) (x + y)′ = x′ ∗ y′ [4 Marks]
+3. Find the solution of the following system of linear equations: [4 Marks]
+5x1 − 3x2 + 5x3 − 2x4 = 9
+5x2 − x3 + 3x4 = 0
+5x3 − t = 3
+3x4 = 6
+4. In one of the Software programmes, 40% of those students that come from the Nepal, and
+50% of those come from another country (None-Nepal Students) are studying Mathematics
+for Computer Science. Those students that come from the Nepal constitute 20% of the
+student body. If a student is chosen at random.
+(a) Find the probability that the student is studying Mathematics for Computer Science.
+(b) If the student is studying Mathematics for Computer Science, find the probability that
+the student is a from Nepal. [4 Marks]
+5. Let A and B be events with P (A) = 3
+7 (A ∪ B) = 5
+7 , P (B) = px. Using the formula:
+P (A ∪ B) = P (A) + P (B) − P (A ∩ B). Find p if
+(a) A is a subset of B.
+(b) A and B are mutually exclusive. [4 Marks]
+6. In repeated trails b(k, n, p), calculate the followings
+(a) b(2; 4, 1/3).
+(b) b(3; 5, 1/4). [4 Marks]
+7. A sample space S consists of five elements: S = {A, B, C, D, E}. Under which of the
+following functions does S becomes a probability space?
+(a) P (A) = 1
+3 , P (B) = 1
+6 , P (C) = 1
+2 , P (D) = 1
+6 , P (E) = 1
+3 .
+(b) P (A) = 1
+6 , P (B) = 1
+6 , P (C) = 1
+6 , P (D) = 1
+6 , P (E) = 1
+3 .
+(c) P (A) = 1
+3 , P (B) = 1
+6 , P (C) = 1
+6 , P (D) = 1
+6 , P (E) = 1
+6 .
+(d) P (A) = 1
+6 , P (B) = 1
+3 , P (C) = 1
+6 , P (D) = 1
+6 , P (E) = 1
+6 . [4 Marks]
+8. Let R be the following relation on S = a, b, c, d : R = (a, b), (b, a), (c, b), (d, b)(a, a), (a, d).
+Find the domain and the range of R. [4 Marks]
+9. Find the power set, Pow(S), of S = {a, b, c, d}. [4 Marks]
+10. Find AB if A =
+2 3 1
+0 5 7
+
+, B =
+
+
+1 1 5
+2 3 4
+0 7 3
+
+ . [4 Marks]
+SECTION B
+Answer two questions from this section.
+11. A student has probability 3
+5 of winning a competition. If the student takes part in 5 races,
+find the probability that it wins exactly 3 of the races. [15 Marks]
+12. Solve the system [15 Marks]
+2x + 3y = 19
+x − 5y = 10.
+13. Suppose that 20% of the apples produced in a farm are underripe. If 6 apples are chosen at
+random, what is the probability p that
+(a) 2 are underripe
+(b) 3 are underripe
+(c) at least two are underripe [15 Marks]
+SECTION C
+Answer one question from this section.
+14. Solve the system [30 Marks]
+x + 2y − z = 3
+2x − 5y + 2z = 1
+3x − 4y − z = 2.
+15. (a) Construct circuit gate of ABC′ + BC′ + A′B. Also write the truth table of the circuit.
+(b) Provide the Boolean expression and the truth table for the logic circuit shown in the
+figure below:

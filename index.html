@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Programming TCA Exam</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Java Programming TCA Exam</h1>
+            <div class="exam-info">
+                <span id="question-counter">Question 1 of 20</span>
+                <span id="timer">Time: 45:00</span>
+                <span id="score">Score: 0/0</span>
+            </div>
+        </header>
+
+        <main>
+            <!-- Start Screen -->
+            <div id="start-screen" class="screen active">
+                <div class="welcome-card">
+                    <h2>Welcome to the Java Programming TCA Exam</h2>
+                    <div class="exam-details">
+                        <h3>Exam Instructions:</h3>
+                        <ul>
+                            <li>This exam contains TCA sample questions on Java programming</li>
+                            <li>Topics include: OOP concepts, inheritance, polymorphism, exception handling</li>
+                            <li>You have 45 minutes to complete the exam</li>
+                            <li>Some questions are multiple choice (select all correct answers)</li>
+                            <li>Some questions are single choice (select one answer)</li>
+                            <li>Some questions require text input or matching</li>
+                            <li>Code snippets are provided for analysis</li>
+                            <li>Your answers are automatically saved</li>
+                            <li>You can review your answers before submitting</li>
+                        </ul>
+                        
+                        <div class="exam-options">
+                            <label>
+                                <input type="checkbox" id="randomize-questions" checked>
+                                Randomize question order
+                            </label>
+                            <label>
+                                Number of questions:
+                                <select id="question-count">
+                                    <option value="10">10 Questions</option>
+                                    <option value="15">15 Questions</option>
+                                    <option value="20" selected>20 Questions</option>
+                                    <option value="25">25 Questions</option>
+                                    <option value="30">30 Questions</option>
+                                    <option value="40">40 Questions</option>
+                                    <option value="50">50 Questions</option>
+                                    <option value="60">All Questions (60)</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                    <button id="start-exam" class="btn btn-primary">Start Java Exam</button>
+                </div>
+            </div>
+
+            <!-- Question Screen -->
+            <div id="question-screen" class="screen">
+                <div class="question-card">
+                    <div class="question-header">
+                        <span class="question-type"></span>
+                        <span class="question-points"></span>
+                    </div>
+                    
+                    <div class="question-content">
+                        <h3 id="question-text"></h3>
+                        <div id="code-block" class="code-block" style="display: none;">
+                            <pre><code id="code-content"></code></pre>
+                        </div>
+                        <div id="question-options"></div>
+                        <div id="fill-blank-input" class="fill-blank-container" style="display: none;">
+                            <input type="text" id="fill-blank-answer" placeholder="Enter your answer...">
+                        </div>
+                        <div id="matching-container" style="display: none;">
+                            <!-- Matching questions will be populated here -->
+                        </div>
+                    </div>
+
+                    <div class="question-navigation">
+                        <button id="prev-question" class="btn btn-secondary">Previous</button>
+                        <div class="question-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                        </div>
+                        <button id="next-question" class="btn btn-primary">Next</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review Screen -->
+            <div id="review-screen" class="screen">
+                <div class="review-card">
+                    <h2>Review Your Answers</h2>
+                    <div class="review-summary">
+                        <div class="summary-stats">
+                            <div class="stat">
+                                <span class="stat-number" id="answered-count">0</span>
+                                <span class="stat-label">Answered</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number" id="remaining-count">0</span>
+                                <span class="stat-label">Remaining</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number" id="time-remaining">0</span>
+                                <span class="stat-label">Time Left</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="review-list" class="review-list">
+                        <!-- Review items will be populated here -->
+                    </div>
+
+                    <div class="review-actions">
+                        <button id="back-to-questions" class="btn btn-secondary">Back to Questions</button>
+                        <button id="submit-exam" class="btn btn-primary">Submit Exam</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Screen -->
+            <div id="results-screen" class="screen">
+                <div class="results-card">
+                    <h2>Java TCA Exam Results</h2>
+                    <div class="score-display">
+                        <div class="final-score">
+                            <span id="final-percentage">0%</span>
+                            <span id="final-fraction">0/0</span>
+                        </div>
+                        <div class="grade" id="final-grade">F</div>
+                    </div>
+
+                    <div class="results-breakdown">
+                        <h3>Question Breakdown</h3>
+                        <div id="results-list">
+                            <!-- Results breakdown will be populated here -->
+                        </div>
+                    </div>
+
+                    <div class="performance-analysis">
+                        <h3>Performance Analysis</h3>
+                        <div id="topic-analysis">
+                            <!-- Topic-wise performance will be shown here -->
+                        </div>
+                    </div>
+
+                    <div class="results-actions">
+                        <button id="restart-exam" class="btn btn-primary">Take Again</button>
+                        <button id="export-results" class="btn btn-secondary">Export Results</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Navigation Panel -->
+        <aside id="navigation-panel" class="navigation-panel">
+            <h3>Question Navigator</h3>
+            <div id="question-grid" class="question-grid">
+                <!-- Question navigation buttons will be populated here -->
+            </div>
+            <button id="review-answers" class="btn btn-outline">Review Answers</button>
+        </aside>
+    </div>
+
+    <!-- Modal for confirmations -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h3 id="modal-title">Confirm Action</h3>
+            <p id="modal-message">Are you sure you want to proceed?</p>
+            <div class="modal-actions">
+                <button id="modal-cancel" class="btn btn-secondary">Cancel</button>
+                <button id="modal-confirm" class="btn btn-primary">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
